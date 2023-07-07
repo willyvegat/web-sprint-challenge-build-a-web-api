@@ -24,11 +24,20 @@ router.post('/', checkProject, (req, res, next) => {
     .catch(next)
 });
 
+// router.post('/', checkProject, async (req, res, next) => {
+//     try{
+//         const newProject = await Project.insert({ 
+//             name: req.name, 
+//             description: req.description 
+//         })
+//         res.status(201).json(newProject);
+//     } catch (err) {
+//         next(err)
+//     }    
+//  });
+
 router.put('/:id', checkProjectsId, checkProjectUpdate, (req, res) => {
-    console.log(req.body);
-    console.log(req.name);
-    console.log(req.description);
-    console.log(req.completed);
+    Project.update
 });
 
 router.delete('/:id', checkProjectsId, (req, res) => {
