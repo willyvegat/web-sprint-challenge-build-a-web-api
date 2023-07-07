@@ -15,11 +15,21 @@ async function checkProjectsId(req, res, next) {
     }
 }
 
-// function checkProject (req, res, next) {
-
-// }
+function checkProject (req, res, next) {
+    const { name, description, completed } = req.body;
+    if (!name || !name.trim() || 
+    !description || !description.trim() ||
+    !completed) {
+        next({ status: 400, message: 'Name and Description required!'})
+    } else {
+        req.name = name.trim();
+        req.description = description.trim();
+        req.completed = completed;
+        next();
+    }
+}
 
 module.exports = {
     checkProjectsId,
-
+    checkProject
 }

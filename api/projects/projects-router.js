@@ -1,5 +1,5 @@
 const express = require('express');
-const { checkProjectsId } = require('./projects-middleware');
+const { checkProjectsId, checkProject } = require('./projects-middleware');
 const Project = require('./projects-model');
 
 const router = express.Router();
@@ -16,12 +16,15 @@ router.get('/:id', checkProjectsId, (req, res) => {
     res.json(req.project);
 });
 
-router.post('/', (req, res) => {
-   
+router.post('/', checkProject, (req, res) => {
+   console.log(req.body);
 });
 
-router.put('/:id', checkProjectsId, (req, res) => {
-   
+router.put('/:id', checkProjectsId, checkProject, (req, res) => {
+    console.log(req.body);
+    console.log(req.name);
+    console.log(req.description);
+    console.log(req.completed);
 });
 
 router.delete('/:id', checkProjectsId, (req, res) => {
