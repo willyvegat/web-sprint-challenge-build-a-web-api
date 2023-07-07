@@ -8,7 +8,7 @@ async function checkProjectsId(req, res, next) {
             req.project = project;
             next();
         } else {
-            next({ status: 404, message: `No project with the given id ${id} found`})
+            next({ status: 404, message: `No project with the given id ${id}`})
         }
     } catch (err) {
         next(err);
