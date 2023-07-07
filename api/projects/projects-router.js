@@ -10,12 +10,10 @@ router.get('/', (req, res, next) => {
             res.json(projects);
         })
         .catch(next);
-  
 });
 
 router.get('/:id', checkProjectsId, (req, res) => {
-    console.log(req.project);
-    // res.json(req.project);
+    res.json(req.project);
 });
 
 router.post('/', (req, res) => {
