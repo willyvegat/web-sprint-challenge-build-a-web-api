@@ -36,9 +36,23 @@ router.post('/', checkProject, (req, res, next) => {
 //     }    
 //  });
 
-router.put('/:id', checkProjectsId, checkProjectUpdate, (req, res) => {
-    Project.update
+router.put('/:id', checkProjectsId, checkProjectUpdate, (req, res, next) => {
+    Project.update(req.params.id, req.body)
+        .then(updatedProject => {
+            res.json(updatedProject);
+        })
+        .catch(next)
 });
+// router.put('/:id', checkProjectsId, checkProjectUpdate, (req, res, next) => {
+//     Project.update(req.params.id, { name: req.name, description: req.description })
+//         .then(() => {
+//             return Project.get(req.params.id)
+//         })
+//         .then(updatedProject => {
+//             res.json(updatedProject);
+//         })
+//         .catch(next)
+// });
 
 router.delete('/:id', checkProjectsId, (req, res) => {
    
