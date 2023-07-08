@@ -44,7 +44,7 @@ function checkProjectUpdate (req, res, next) {
     } else {
         req.name = name.trim();
         req.description = description.trim();
-        // req.completed = completed;
+        req.completed = completed;
         next();
     }
 }
