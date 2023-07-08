@@ -62,8 +62,13 @@ router.delete('/:id', checkProjectsId, (req, res, next) => {
     .catch(next);
 });
 
-router.get('/:id/actions', checkProjectsId, (req, res) => {
-   
+router.get('/:id/actions', checkProjectsId, (req, res, next) => {
+   Project.getProjectActions(req.params.id)
+    .then(actions => {
+        console.log(actions);
+        res.json(actions);
+    })
+    .catch(next);
 });
 
 router.use((error, req, res, next) => { // eslint-disable-line
