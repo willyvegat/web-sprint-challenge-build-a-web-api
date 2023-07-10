@@ -43,6 +43,7 @@ router.put('/:id', checkProjectsId, checkProjectUpdate, (req, res, next) => {
         })
         .catch(next);
 });
+
 // router.put('/:id', checkProjectsId, checkProjectUpdate, (req, res, next) => {
 //     Project.update(req.params.id, { name: req.name, description: req.description })
 //         .then(() => {
@@ -55,20 +56,20 @@ router.put('/:id', checkProjectsId, checkProjectUpdate, (req, res, next) => {
 // });
 
 router.delete('/:id', checkProjectsId, (req, res, next) => {
-   Project.remove(req.params.id)
-    .then(project => {
-        res.json(project);
-    })
-    .catch(next);
+    Project.remove(req.params.id)
+        .then(project => {
+            res.json(project);
+        })
+        .catch(next);
 });
 
 router.get('/:id/actions', checkProjectsId, (req, res, next) => {
-   Project.getProjectActions(req.params.id)
-    .then(actions => {
-        console.log(actions);
-        res.json(actions);
-    })
-    .catch(next);
+    Project.getProjectActions(req.params.id)
+        .then(actions => {
+            console.log(actions);
+            res.json(actions);
+        })
+        .catch(next);
 });
 
 router.use((error, req, res, next) => { // eslint-disable-line

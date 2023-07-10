@@ -37,14 +37,15 @@ function checkProjectUpdate (req, res, next) {
         !name && 
         !name.trim() || 
         !description &&
-        !description.trim()
+        !description.trim()  
+        // completed !== false && completed !== true
         // || typeof completed !== Boolean
     ) {
         next({ status: 400, message: 'Name, Description and Completed required!'})
     } else {
         req.name = name.trim();
         req.description = description.trim();
-        req.completed = completed;
+        // req.completed = completed;
         next();
     }
 }

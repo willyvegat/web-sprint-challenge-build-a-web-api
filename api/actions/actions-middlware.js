@@ -40,14 +40,14 @@ function checkActionUpdate (req, res, next) {
         !description &&
         !description.trim() ||
         !project_id
-        // completed === null
+        // !completed
         // || typeof completed !== Boolean
     ) {
         next({ status: 400, message: 'Notes, Description, Project_id and Completed required!'})
     } else {
         req.notes = notes.trim();
         req.description = description.trim();
-        req.completed = completed;
+        // req.completed = completed;
         next();
     }
 }
