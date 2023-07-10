@@ -16,14 +16,15 @@ async function checkActionsId(req, res, next) {
 }
 
 function checkAction (req, res, next) {
-    const { notes, description } = req.body;
+    const { notes, description, project_id } = req.body;
     if (
         !notes || 
         !notes.trim() || 
         !description ||
-        !description.trim()
+        !description.trim() ||
+        !project_id
     ) {
-        next({ status: 400, message: 'Notes and Description required!'})
+        next({ status: 400, message: 'Notes, Description and Project_id required!'})
     } else {
         req.notes = notes.trim();
         req.description = description.trim();
@@ -32,15 +33,17 @@ function checkAction (req, res, next) {
 }
 
 function checkActionUpdate (req, res, next) {
-    const { notes, description, completed } = req.body;
+    const { notes, description, project_id, completed } = req.body;
     if (
         !notes && 
         !notes.trim() || 
         !description &&
-        !description.trim()
+        !description.trim() ||
+        !project_id
+        // completed === null
         // || typeof completed !== Boolean
     ) {
-        next({ status: 400, message: 'Notes, Description and Completed required!'})
+        next({ status: 400, message: 'Notes, Description, Project_id and Completed required!'})
     } else {
         req.notes = notes.trim();
         req.description = description.trim();

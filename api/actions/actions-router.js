@@ -24,6 +24,22 @@ router.post('/', checkAction, (req, res, next) => {
         .catch(next)
 });
 
+router.put('/:id', checkActionsId, checkActionUpdate, (req, res, next) => {
+    Action.update(req.params.id, req.body)
+        .then(updatedAction => {
+            res.json(updatedAction);
+        })
+        .catch(next);
+});
+
+router.delete('/:id', checkActionsId, (req, res, next) => {
+    Action.remove(req.params.id)
+        .then(action => {
+            res.json(action);
+        })
+        .catch(next);
+});
+
 router.use((error, req, res, next) => { // eslint-disable-line
     res.status(error.status || 500).json({
         message: error.message,
