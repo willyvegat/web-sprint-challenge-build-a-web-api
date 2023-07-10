@@ -75,7 +75,7 @@ router.use((error, req, res, next) => { // eslint-disable-line
     res.status(error.status || 500).json({
         message: error.message,
         customMessage: "Router is not working!"
-    })
+    });
 });
 
 module.exports = router;
