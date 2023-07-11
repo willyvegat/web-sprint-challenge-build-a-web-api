@@ -16,7 +16,7 @@ async function checkProjectsId(req, res, next) {
 }
 
 function checkProject (req, res, next) {
-    const { name, description } = req.body;
+    const { name, description, completed } = req.body;
     if (
         !name || 
         !name.trim() || 
@@ -25,6 +25,11 @@ function checkProject (req, res, next) {
     ) {
         next({ status: 400, message: 'Name and Description required!'})
     } else {
+        // if(completed === undefined) { 
+        //     req.completed = false 
+        // } else {
+        //     req.completed = true
+        // }
         req.name = name.trim();
         req.description = description.trim();
         next();
@@ -34,18 +39,17 @@ function checkProject (req, res, next) {
 function checkProjectUpdate (req, res, next) {
     const { name, description, completed } = req.body;
     if (
-        !name && 
+        !name ||
         !name.trim() || 
-        !description &&
-        !description.trim()  
-        // completed !== false && completed !== true
-        // || typeof completed !== Boolean
+        !description ||
+        !description.trim() ||
+        completed === undefined
     ) {
         next({ status: 400, message: 'Name, Description and Completed required!'})
     } else {
         req.name = name.trim();
         req.description = description.trim();
-        // req.completed = completed;
+        req.completed = completed;
         next();
     }
 }

@@ -44,17 +44,6 @@ router.put('/:id', checkProjectsId, checkProjectUpdate, (req, res, next) => {
         .catch(next);
 });
 
-// router.put('/:id', checkProjectsId, checkProjectUpdate, (req, res, next) => {
-//     Project.update(req.params.id, { name: req.name, description: req.description })
-//         .then(() => {
-//             return Project.get(req.params.id)
-//         })
-//         .then(updatedProject => {
-//             res.json(updatedProject);
-//         })
-//         .catch(next)
-// });
-
 router.delete('/:id', checkProjectsId, (req, res, next) => {
     Project.remove(req.params.id)
         .then(project => {

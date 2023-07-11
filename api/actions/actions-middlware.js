@@ -35,13 +35,12 @@ function checkAction (req, res, next) {
 function checkActionUpdate (req, res, next) {
     const { notes, description, project_id, completed } = req.body;
     if (
-        !notes && 
+        !notes ||
         !notes.trim() || 
-        !description &&
+        !description ||
         !description.trim() ||
-        !project_id
-        // !completed
-        // || typeof completed !== Boolean
+        !project_id ||
+        completed === undefined
     ) {
         next({ status: 400, message: 'Notes, Description, Project_id and Completed required!'})
     } else {
